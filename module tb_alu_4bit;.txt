@@ -1,0 +1,26 @@
+module tb_alu_4bit;
+    logic [3:0] A, B;
+    logic [2:0] sel;
+    logic [3:0] Y;
+
+    alu_4bit uut (.A(A), .B(B), .sel(sel), .Y(Y));
+
+    initial begin
+        $dumpfile("alu_4bit.vcd");
+        $dumpvars(0, tb_alu_4bit);
+
+        $monitor("T=%0t A=%b B=%b sel=%b => Y=%b", $time, A, B, sel, Y);
+
+        A = 4'b0101; B = 4'b0011;
+
+        sel = 3'b000; #10; 
+        sel = 3'b001; #10; 
+        sel = 3'b010; #10; 
+        sel = 3'b011; #10; 
+        sel = 3'b100; #10; 
+        sel = 3'b101; #10; 
+        sel = 3'b110; #10; 
+
+        $finish;
+    end
+endmodule
